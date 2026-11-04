@@ -1,0 +1,66 @@
+/* Gutschein · Karte (Bildschirm + Druck). Maße in cqw → gleiche Gestaltung von der Vorschau bis A5. Designs: d-<name>. */
+.gk{--g-bg:#fff;--g-ink:#1d1a17;--g-mute:#6b625a;--g-acc:#c0392b;--g-panel:rgba(255,255,255,.0);--g-titel:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  container-type:inline-size;position:relative;width:100%;aspect-ratio:1.41421;overflow:hidden;border-radius:2.4cqw;background:var(--g-bg);color:var(--g-ink);
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact;box-sizing:border-box;isolation:isolate}
+.gk *{box-sizing:border-box}
+.gk svg{stroke-width:1.7;fill:none}.gk svg.qr,.gk svg.qr *{stroke:none!important}
+.gk-deko{position:absolute;inset:0;z-index:0;background:var(--g-deko,none);pointer-events:none}
+.gk-bild{position:absolute;top:0;bottom:0;left:0;width:38%;z-index:0;overflow:hidden}
+.gk-bild img{width:100%;height:100%;object-fit:cover;display:block}
+.gk-bild::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 55%,var(--g-bg))}
+.gk.mit-bild .gk-inhalt{left:38%}
+.gk-inhalt{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;padding:6cqw 6.5cqw 6.5cqw}
+.gk-kopf{display:flex;align-items:center;justify-content:space-between;gap:2cqw}
+.gk-label{font:700 2.9cqw/1 system-ui,sans-serif;letter-spacing:.42em;text-transform:uppercase;color:var(--g-acc)}
+.mal{font:700 2.8cqw/1 system-ui,sans-serif;color:var(--g-acc);border:.3cqw solid currentColor;border-radius:99cqw;padding:.9cqw 2cqw;white-space:nowrap}
+.mal small{font-weight:600;font-size:inherit;opacity:.8}
+.gk-mitte{flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0;padding:1.5cqw 0}
+.gk-motiv{width:8.5cqw;height:8.5cqw;color:var(--g-acc);margin-bottom:1.6cqw;flex:none}
+.gk-titel{font:700 7.2cqw/1.06 var(--g-titel);margin:0;letter-spacing:-.01em;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.gk-text{font-size:3.3cqw;line-height:1.35;margin:1.8cqw 0 0;color:var(--g-mute);white-space:pre-wrap;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.gk-fuer{font:600 4cqw/1.2 var(--g-titel);margin:1.4cqw 0 0;color:var(--g-acc)}
+.gk-fuss{display:flex;align-items:flex-end;justify-content:space-between;gap:3cqw}
+.gk-wer{display:flex;flex-direction:column;gap:.6cqw;font-size:3cqw;line-height:1.25;color:var(--g-mute);min-width:0}
+.gk-wer b{color:var(--g-ink);font-weight:700}
+.gk-wer .bis{font-size:2.6cqw}
+.qr-box{display:flex;flex-direction:column;align-items:center;gap:.8cqw;flex:none}
+.qr-box .qr{width:15cqw;height:15cqw;border-radius:1.2cqw;background:#fff;padding:.6cqw;box-shadow:0 0 0 .25cqw rgba(0,0,0,.08)}
+.qr-box small{font-size:1.9cqw;color:var(--g-mute);white-space:nowrap}
+.qr-box.gross .qr{width:30cqw;height:30cqw}.qr-box.gross small{font-size:3cqw}
+.gk-hinweis{position:absolute;left:0;right:0;bottom:1.6cqw;text-align:center;font-size:1.65cqw;color:var(--g-mute);opacity:.75;z-index:1}
+.gk-motivreihe{display:flex;gap:1.6cqw;color:var(--g-acc)}.gk-motivreihe svg{width:5.5cqw;height:5.5cqw}
+.gk-rueck .gk-inhalt{align-items:center;justify-content:center;text-align:center;gap:3cqw}
+.gk-innen{font-size:2.6cqw;color:var(--g-mute);margin:0}
+.stempel{position:absolute;z-index:2;right:7cqw;top:42%;transform:rotate(-11deg);font:800 6cqw/1 system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;
+  padding:1.2cqw 3cqw;border:.7cqw solid currentColor;border-radius:1.6cqw;color:#1f7a4d;background:rgba(255,255,255,.72)}
+.stempel.s-abgelaufen{color:#8a6a00}.stempel.s-zurueckgezogen{color:#9b2c2c}
+.gk.st-eingeloest .gk-inhalt,.gk.st-abgelaufen .gk-inhalt,.gk.st-zurueckgezogen .gk-inhalt{opacity:.55}
+
+/* ---------- Designs ---------- */
+.gk.d-weihnachten{--g-bg:#8e1b1f;--g-ink:#fff8ec;--g-mute:#f1d9c4;--g-acc:#f2c66d;--g-titel:"Iowan Old Style",Georgia,serif;
+  --g-deko:radial-gradient(circle at 88% 14%,rgba(242,198,109,.9) 0 .7cqw,transparent .8cqw),radial-gradient(circle at 93% 30%,rgba(255,255,255,.7) 0 .45cqw,transparent .55cqw),radial-gradient(circle at 78% 8%,rgba(255,255,255,.6) 0 .4cqw,transparent .5cqw),
+  radial-gradient(circle at 70% 24%,rgba(242,198,109,.7) 0 .5cqw,transparent .6cqw),radial-gradient(60cqw 40cqw at 100% 0,rgba(16,88,58,.55),transparent 70%),radial-gradient(70cqw 50cqw at 0 100%,rgba(0,0,0,.25),transparent 70%)}
+.gk.d-geburtstag{--g-bg:#fff6e8;--g-ink:#2b1d14;--g-mute:#7a6455;--g-acc:#e0532f;
+  --g-deko:radial-gradient(5cqw 6cqw at 86% 18%,#ff8fab 0 98%,transparent),radial-gradient(4.2cqw 5cqw at 94% 30%,#5fb4ff 0 98%,transparent),radial-gradient(3.6cqw 4.4cqw at 79% 32%,#ffd25e 0 98%,transparent),
+  linear-gradient(transparent 0 0),radial-gradient(circle at 12% 88%,#6fd39b 0 .9cqw,transparent 1cqw),radial-gradient(circle at 22% 94%,#b48cff 0 .7cqw,transparent .8cqw)}
+.gk.d-liebe{--g-bg:#fdecef;--g-ink:#3a1420;--g-mute:#8a5a66;--g-acc:#d23e63;
+  --g-deko:radial-gradient(circle at 88% 16%,rgba(210,62,99,.22) 0 9cqw,transparent 9.2cqw),radial-gradient(circle at 96% 34%,rgba(210,62,99,.14) 0 6cqw,transparent 6.2cqw),linear-gradient(160deg,#fff4f6,#f9dbe2)}
+.gk.d-blumen{--g-bg:#f4f7ec;--g-ink:#22301d;--g-mute:#5f6d55;--g-acc:#5c8a3a;--g-titel:Georgia,serif;
+  --g-deko:radial-gradient(circle at 90% 12%,#f6b8c8 0 3cqw,transparent 3.2cqw),radial-gradient(circle at 83% 22%,#f9d97a 0 2.2cqw,transparent 2.4cqw),radial-gradient(circle at 95% 28%,#c7b7f2 0 2.5cqw,transparent 2.7cqw),
+  radial-gradient(40cqw 30cqw at 100% 0,#e3efcf,transparent 70%),radial-gradient(40cqw 30cqw at 0 100%,#f6e3b4,transparent 70%)}
+.gk.d-konfetti{--g-bg:#fff4e6;--g-ink:#1d1a17;--g-mute:#6b625a;--g-acc:#d0473a;
+  --g-deko:radial-gradient(circle at 82% 14%,#ffd25e 0 1.1cqw,transparent 1.2cqw),radial-gradient(circle at 92% 26%,#5fb4ff 0 .9cqw,transparent 1cqw),radial-gradient(circle at 74% 30%,#ff7aa8 0 1cqw,transparent 1.1cqw),
+  radial-gradient(circle at 88% 42%,#6fd39b 0 .8cqw,transparent .9cqw),radial-gradient(circle at 96% 10%,#b48cff 0 .7cqw,transparent .8cqw),linear-gradient(160deg,#fff7ec,#ffe5d8)}
+.gk.d-elegant{--g-bg:#141414;--g-ink:#f4efe6;--g-mute:#c9bfae;--g-acc:#d4b478;--g-titel:"Didot","Bodoni 72",Georgia,serif;
+  --g-deko:linear-gradient(transparent,transparent),radial-gradient(70cqw 40cqw at 50% -10%,#3a3226,transparent 70%)}
+.gk.d-elegant::after{content:"";position:absolute;inset:2.4cqw;border:.25cqw solid rgba(212,180,120,.55);border-radius:1.4cqw;pointer-events:none;z-index:1}
+
+/* ---------- Druckbögen ---------- */
+.bogen{position:relative;background:#fff;overflow:hidden;break-after:page;page-break-after:always}
+.bogen:last-child{break-after:auto;page-break-after:auto}
+.platz{position:absolute;display:flex}
+.platz>.gk{width:100%;height:100%;aspect-ratio:auto;border-radius:0}
+.platz.linie{outline:.2mm dashed #9a9a9a;outline-offset:0}
+.platz.gedreht{transform:rotate(180deg)}
+.falz{position:absolute;left:0;right:0;height:0;border-top:.2mm dashed #b0b0b0}
+.falz span{position:absolute;right:8mm;top:-3.2mm;font:7pt/1 system-ui,sans-serif;color:#999;background:#fff;padding:0 1.5mm}

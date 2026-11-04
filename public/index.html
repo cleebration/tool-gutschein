@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Gutschein · cleebration</title>
+<meta name="description" content="Gutscheine gestalten, drucken oder als Link verschenken – mit QR-Code zum Einlösen und Übersicht, was schon eingelöst ist.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/icon.svg">
+<link rel="stylesheet" href="/karte.css">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<cleebration-leiste id="leiste" tool="gutschein" lang="de" kategorie="tools" anmelden="/anmelden" abmelden="/abmelden">
+  <button class="wb" id="neu" type="button" data-icon="neu" data-t-title="neuHeft" title="Neues Gutscheinheft" aria-label="Neues Gutscheinheft"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg><span data-t="neu">Neu</span></button>
+  <button class="wb zart" id="drucken" type="button" data-icon="drucken" data-t-title="drucken" title="Drucken" aria-label="Drucken"><svg viewBox="0 0 24 24"><path d="M7 9V3h10v6M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/><rect x="7" y="14" width="10" height="7"/></svg></button>
+  <button class="wb zart" id="teilen" type="button" data-icon="teilen" data-t-title="teilen" title="Teilen und QR" aria-label="Teilen und QR"><svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg></button>
+  <a class="wb zart" id="ansehen" data-icon="ansehen" data-t-title="ansehen" title="Wie Beschenkte es sehen" aria-label="Ansehen" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></a>
+</cleebration-leiste>
+
+<main class="app">
+  <section class="karte gutscheine" aria-labelledby="h-gs">
+    <header class="kopf"><span class="griff" aria-hidden="true">⋮⋮</span><h1 id="h-gs" data-t="gutscheine">Gutscheine</h1><span class="stand" id="stand" aria-live="polite"></span>
+      <button class="ib" type="button" data-info="editor" aria-label="(i)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg></button></header>
+    <ul class="gl-zeile" id="gs-liste"></ul>
+    <div class="ideen" id="ideen"></div>
+    <button class="btn klein" type="button" id="gs-neu"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg><span data-t="gutscheinDazu">Gutschein</span></button>
+    <p class="grenzzeile" id="grenzzeile" hidden></p>
+    <p class="fehler" id="fehler" role="alert" hidden></p>
+  </section>
+
+  <section class="karte vorschau" aria-labelledby="h-vor">
+    <header class="kopf"><span class="griff" aria-hidden="true">⋮⋮</span><h2 id="h-vor" data-t="vorschau">Vorschau</h2><span class="n"></span>
+      <button class="sw" id="vor-deck" type="button" role="switch" aria-checked="false" data-t-aria="zeigeDeckblatt" aria-label="Deckblatt zeigen"><i></i></button></header>
+    <div id="vor-karte"></div>
+    <div class="vorschau-knoepfe">
+      <button class="btn klein zart" type="button" id="vor-link"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span data-t="linkDiesem">Link zu diesem Gutschein</span></button>
+    </div>
+  </section>
+
+  <section class="karte gestaltung" aria-labelledby="h-gest">
+    <header class="kopf"><span class="griff" aria-hidden="true">⋮⋮</span><h2 id="h-gest" data-t="gestaltung">Für wen & Design</h2><span class="n"></span>
+      <button class="ib" type="button" data-info="heft" aria-label="(i)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg></button></header>
+    <div class="zwei">
+      <label class="feld"><span data-t="fuer">Für</span><input id="fuer" data-f="fuer" maxlength="80" data-t-ph="phFuer" placeholder="z. B. Renate" autocomplete="off"></label>
+      <label class="feld"><span data-t="von">Von</span><input id="von" data-f="von" maxlength="80" data-t-ph="phVon" placeholder="Dein Name" autocomplete="off"></label>
+    </div>
+    <div class="feld"><span data-t="design">Design</span><div class="designs" id="designs" role="radiogroup" aria-label="Design"></div></div>
+    <label class="feld"><span data-t="heftTitel">Titel des Hefts</span><input id="titel" data-f="titel" maxlength="120" data-t-ph="phTitel" placeholder="z. B. Weihnachten 2026" autocomplete="off"></label>
+    <label class="feld"><span data-t="deckText">Text auf dem Deckblatt</span><textarea id="deckblatt" data-f="deckblatt" maxlength="600" data-t-ph="phDeck" placeholder="Ein paar liebe Worte …"></textarea></label>
+    <div class="schalter">
+      <span class="bild-vor" id="bild-vor" aria-hidden="true"></span>
+      <div class="sw-text"><b data-t="foto">Eigenes Foto</b> <span class="schloss" id="bild-schloss" hidden><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><small id="bild-hilfe"></small></div>
+      <label class="btn klein" id="bild-waehlen"><input type="file" id="bild-datei" accept="image/*" hidden><svg viewBox="0 0 24 24"><path d="M12 19V7M7 12l5-5 5 5M5 21h14"/></svg><span data-t="fotoKnopf">Foto</span></label>
+      <button class="ib" type="button" id="bild-weg" data-t-aria="fotoWeg" aria-label="Foto entfernen" hidden><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="schalter">
+      <button class="sw" id="hinweis_aus" type="button" role="switch" aria-checked="false"><i></i></button>
+      <div class="sw-text"><b data-t="ohneHinweis">Ohne cleebration-Hinweis</b> <span class="schloss" id="hinweis-schloss" hidden><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><small data-t="ohneHinweisText">Die kleine Zeile unten auf jeder Karte.</small></div>
+    </div>
+  </section>
+
+  <section class="karte hefte" aria-labelledby="h-hefte">
+    <header class="kopf"><span class="griff" aria-hidden="true">⋮⋮</span><h2 id="h-hefte" data-t="meine">Meine Gutscheine</h2><span class="n" id="anzahl"></span></header>
+    <ul class="liste" id="liste"></ul>
+    <div id="erhalten-bereich" hidden><p class="unterkopf" data-t="erhalten">Erhalten</p><ul class="liste" id="erhalten"></ul></div>
+  </section>
+</main>
+
+<dialog id="teilen-dlg" class="dlg"><form method="dialog"><button class="ib x" aria-label="X"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <h2 data-t="teilen">Teilen und QR</h2><p class="klein" data-t="teilenText">Mit diesem Link sieht die beschenkte Person das ganze Heft und kann jeden Gutschein einlösen – ohne Konto.</p>
+  <div class="link"><span id="link-text"></span><button class="ib" type="button" id="link-kopieren" data-t-aria="kopieren" aria-label="Link kopieren"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button></div>
+  <button class="btn" type="button" id="link-senden" hidden style="width:100%;margin:10px 0"><svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg><span data-t="senden">Senden …</span></button>
+  <div id="qr-platz"></div>
+  <p class="unterkopf" data-t="einzeln">Einzelne Gutscheine</p><ul class="link-liste" id="link-liste"></ul>
+  <div id="tipp-platz"></div></form></dialog>
+
+<dialog id="druck-dlg" class="dlg"><form method="dialog"><button class="ib x" aria-label="X"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <h2 data-t="drucken">Drucken</h2>
+  <div class="formate" id="formate" role="radiogroup"></div>
+  <div class="schalter"><button class="sw" id="d-deck" type="button" role="switch" aria-checked="true"><i></i></button><div class="sw-text"><b data-t="deckblatt">Deckblatt</b><small data-t="deckText2">Erste Karte mit Titel, Für und Text.</small></div></div>
+  <div class="schalter"><button class="sw" id="d-alle" type="button" role="switch" aria-checked="false"><i></i></button><div class="sw-text"><b data-t="auchErledigte">Auch eingelöste und abgelaufene</b><small data-t="auchErledigteText">Sonst nur offene Gutscheine.</small></div></div>
+  <div class="schalter"><button class="sw" id="d-linien" type="button" role="switch" aria-checked="true"><i></i></button><div class="sw-text"><b data-t="linien">Schnittlinien</b><small data-t="linienText">Feine Strichellinie zum Ausschneiden.</small></div></div>
+  <p class="druck-info" id="druck-info"></p>
+  <button class="btn" type="button" id="druck-los" style="width:100%"><svg viewBox="0 0 24 24"><path d="M7 9V3h10v6M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/><rect x="7" y="14" width="10" height="7"/></svg><span data-t="jetztDrucken">Drucken</span></button>
+</form></dialog>
+
+<dialog id="motiv-dlg" class="dlg"><form method="dialog"><button class="ib x" aria-label="X"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <h2 data-t="motiv">Motiv</h2><div class="motive-wahl" id="motive-wahl" role="radiogroup"></div></form></dialog>
+<dialog id="info" class="dlg"><form method="dialog"><button class="ib x" aria-label="X"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div id="info-text"></div></form></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<div id="druck" aria-hidden="true"></div>
+
+<script src="/vendor/qrcode.js" defer></script>
+<script src="https://store.cleebration.com/leiste.js" defer></script>
+<script src="https://store.cleebration.com/qr.js" defer></script>
+<script src="https://store.cleebration.com/tipp.js" defer></script>
+<script src="https://store.cleebration.com/kit.js" data-produkt="gutschein" defer></script>
+<script src="/karte.js" defer></script>
+<script src="/app.js" defer></script>
+</body>
+</html>

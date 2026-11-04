@@ -1,0 +1,61 @@
+/* Gutschein · Seite für Beschenkte. Eigenes Design des Schenkers → Leiste mit hintergrund="aus" (Tool-Grundsätze 9). */
+:root{--ink:#1d1a17;--muted:#6b625a;--line:rgba(29,26,23,.14);--feld:rgba(29,26,23,.06);--glas:rgba(255,255,255,.8);--acc:#c0392b;--acc-ink:#fff;--ok:#1f7a4d;--bad:#b4372f;
+  --titel:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;--schatten:0 18px 50px rgba(40,20,10,.16);--r:24px;color-scheme:light}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;min-height:100vh;font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--hg);background-attachment:fixed;padding-bottom:72px}
+svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+button,input{font:inherit;color:inherit}
+a{color:var(--acc)}
+
+/* Hintergründe passend zu den Karten-Designs */
+.d-weihnachten{--acc:#a3262b;--hg:radial-gradient(circle at 12% 20%,rgba(255,255,255,.9) 0 2px,transparent 3px),radial-gradient(circle at 70% 12%,rgba(255,255,255,.8) 0 1.5px,transparent 2.5px),radial-gradient(circle at 40% 70%,rgba(255,255,255,.7) 0 2px,transparent 3px),linear-gradient(180deg,#f6ece4,#efe0d4);background-size:220px 220px,300px 300px,260px 260px,auto}
+.d-geburtstag{--acc:#e0532f;--hg:radial-gradient(circle at 14% 18%,#ffd25e 0 6px,transparent 7px),radial-gradient(circle at 84% 14%,#5fb4ff 0 5px,transparent 6px),radial-gradient(circle at 70% 80%,#ff7aa8 0 7px,transparent 8px),linear-gradient(160deg,#fff4e6,#ffe7d6);background-size:340px 340px,300px 300px,380px 380px,auto}
+.d-liebe{--acc:#d23e63;--hg:radial-gradient(900px 500px at 0% 0%,#ffe1e8,transparent),radial-gradient(800px 600px at 100% 100%,#fbd0dc,transparent),#fff2f5}
+.d-blumen{--acc:#5c8a3a;--hg:radial-gradient(900px 500px at 0% 0%,#e3efcf,transparent),radial-gradient(800px 600px at 100% 100%,#f6e3b4,transparent),#f6f8ef;--titel:Georgia,serif}
+.d-konfetti{--acc:#d0473a;--hg:radial-gradient(circle at 12% 18%,#ffd25e 0 6px,transparent 7px),radial-gradient(circle at 82% 12%,#5fb4ff 0 5px,transparent 6px),radial-gradient(circle at 70% 78%,#ff7aa8 0 7px,transparent 8px),radial-gradient(circle at 22% 72%,#6fd39b 0 5px,transparent 6px),linear-gradient(160deg,#fff4e6,#ffe1d6);background-size:340px 340px,300px 300px,380px 380px,260px 260px,auto}
+.d-elegant{--ink:#f4efe6;--muted:#c9bfae;--line:rgba(212,180,120,.3);--feld:rgba(255,255,255,.06);--glas:rgba(22,22,22,.82);--acc:#d4b478;--acc-ink:#161616;color-scheme:dark;--titel:"Didot","Bodoni 72",Georgia,serif;--hg:radial-gradient(1000px 600px at 50% -20%,#3a3226,transparent),#111}
+
+main{max-width:680px;margin:0 auto;padding:16px 16px 24px;display:flex;flex-direction:column;gap:18px}
+.karte-glas{background:var(--glas);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--schatten);-webkit-backdrop-filter:blur(16px) saturate(1.3);backdrop-filter:blur(16px) saturate(1.3)}
+.kopf{text-align:center}
+.vorzeile{margin:0 0 4px;color:var(--muted);font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+h1{font:700 clamp(28px,7vw,42px)/1.08 var(--titel);margin:0;letter-spacing:-.01em;overflow-wrap:anywhere}
+h2{font:700 20px/1.25 var(--titel);margin:0 0 8px}
+.text{white-space:pre-wrap;margin:14px 0 0;overflow-wrap:anywhere}
+.unterschrift{margin:12px 0 0;font:italic 18px/1.3 var(--titel);color:var(--acc)}
+.banner{margin:0;padding:12px 16px;border-radius:16px;background:var(--glas);border:1px solid var(--line);font-weight:600;color:var(--bad);text-align:center}
+.karten{display:flex;flex-direction:column;gap:22px}
+.platz-g .gk{box-shadow:0 18px 44px rgba(0,0,0,.2);border-radius:18px}
+.platz-g.frisch .gk{animation:hupf .6s cubic-bezier(.3,1.6,.5,1)}
+@keyframes hupf{0%{transform:scale(.94)}100%{transform:scale(1)}}
+.unter{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:12px}
+.unter small{color:var(--muted);font-size:12px}
+.status{display:inline-flex;align-items:center;gap:6px;margin:0;padding:8px 14px;border-radius:999px;background:var(--glas);border:1px solid var(--line);color:var(--muted);font-weight:600}
+.status.ok{color:var(--ok)}
+.knopf{all:unset;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:999px;background:var(--acc);color:var(--acc-ink);font-weight:700;text-align:center;box-shadow:0 6px 18px color-mix(in srgb,var(--acc) 35%,transparent)}
+.knopf.zart{background:var(--glas);color:var(--ink);font-weight:600;box-shadow:none;border:1px solid var(--line)}
+.knopf[disabled]{opacity:.45;cursor:not-allowed}
+.knopf:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.merken{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.merken small{color:var(--muted);font-size:13px}
+.merken.ok{flex-direction:row;justify-content:center;color:var(--ok);font-weight:600;margin:0}
+.dlg{border:1px solid var(--line);border-radius:22px;padding:22px;max-width:min(440px,calc(100vw - 32px));width:100%;background:var(--glas);color:var(--ink);box-shadow:var(--schatten);-webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px)}
+.dlg::backdrop{background:rgba(10,8,6,.4)}
+.klein{font-size:14px;color:var(--muted);margin:0 0 14px}
+.feld{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+.feld>span{font-size:13px;font-weight:600;color:var(--muted)}
+.feld input{background:var(--feld);border:1px solid var(--line);border-radius:14px;padding:12px 14px;width:100%;min-height:46px}
+.feld input:focus{outline:2px solid var(--acc);border-color:transparent}
+.knoepfe{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.fehler{color:var(--bad);font-weight:600;margin:0 0 12px}
+.fuss{position:fixed;left:0;right:0;bottom:0;text-align:center;padding:10px 16px calc(10px + env(safe-area-inset-bottom));font-size:13px;background:var(--glas);border-top:1px solid var(--line);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);z-index:5}
+.fuss a{color:var(--muted);text-decoration:none}.fuss b{color:var(--acc)}
+.fuss cleebration-fuss{display:inline-block;padding:0;opacity:1}
+.melden{display:inline-block;margin-left:10px;color:var(--muted);font-size:12px}.melden summary{cursor:pointer;list-style:none}.melden summary::-webkit-details-marker{display:none}
+.melden div{display:flex;gap:6px;justify-content:center;margin-top:6px}.melden button{font:inherit;border:1px solid var(--line);background:transparent;color:inherit;border-radius:999px;padding:3px 10px;cursor:pointer}
+.laedt{height:60vh}
+.leer-seite{min-height:100vh;display:grid;place-items:center;padding:16px}.leer-seite .karte-glas{max-width:460px}
+#toast{position:fixed;left:50%;bottom:72px;transform:translateX(-50%) translateY(20px);opacity:0;pointer-events:none;padding:10px 18px;border-radius:999px;background:var(--ink);color:var(--glas);font-weight:600;transition:.2s;z-index:10}
+#toast.an{opacity:1;transform:translateX(-50%)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.fuss,cleebration-leiste,.unter,.merken,#tipp-platz,.banner{display:none!important}body{background:#fff;padding:0}.platz-g{break-inside:avoid}.platz-g .gk{box-shadow:none;max-width:148mm;margin:0 auto}}
