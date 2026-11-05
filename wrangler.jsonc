@@ -12,7 +12,7 @@
   "vars": { "OFFEN_FREI": "10", "LOESCHEN_MONATE": "12" },
   "d1_databases": [
     // database_id setzt gutschein-veroeffentlichen.command beim ersten Lauf (wrangler d1 create tool-gutschein)
-    { "binding": "DB", "database_name": "tool-gutschein", "database_id": "WIRD-BEIM-ERSTEN-VEROEFFENTLICHEN-GESETZT", "migrations_dir": "migrations" }
+    { "binding": "DB", "database_name": "tool-gutschein", "database_id": "57bc145f-705a-4f39-8292-bf41bfe4bb2a", "migrations_dir": "migrations" }
   ],
   // Erledigte Gutscheine nach der Lösch-Frist entfernen: täglich 03:23 UTC (Einladung 03:17, Terminfinder 03:29)
   "triggers": { "crons": ["23 3 * * *"] }
