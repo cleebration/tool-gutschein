@@ -81,7 +81,7 @@ pruefe("Status zurückgezogen vor allem", status({ anzahl: 1, zurueckgezogen: 5 
 let r = await req("/api/ich");
 pruefe("ich ohne Anmeldung", r.j.angemeldet === false);
 r = await req("/");
-pruefe("/ leitet zur Anmeldung", r.status === 302 && r.headers.get("Location").includes("/anmelden"));
+pruefe("/ ohne Anmeldung: Vorschau-Seite (og-Tags) statt 302, Auftrag 225", r.status === 200 && /text\/html/.test(r.headers.get("Content-Type") || "") && !r.headers.get("Location"));
 r = await req("/api/hefte");
 pruefe("Hefte ohne Anmeldung 401", r.status === 401);
 r = await req("/api/hefte", { header: { "Accept-Language": "en-GB" } });
